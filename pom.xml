@@ -21,14 +21,19 @@
     </build>
 
     <repositories>
+
+        <!--Spigot仓库-->
         <repository>
             <id>spigot-repo</id>
             <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
         </repository>
-<!--        <repository>-->
-<!--            <id>everything</id>-->
-<!--            <url>https://kxjhwbb.coding.net/p/repository/git/raw/master/</url>-->
-<!--        </repository>-->
+
+        <!--Mcrmb插件仓库-->
+        <repository>
+            <id>everything</id>
+            <url>https://kxjhwbb.coding.net/p/repository/git/raw/master/</url>
+        </repository>
+
     </repositories>
 
     <dependencies>
