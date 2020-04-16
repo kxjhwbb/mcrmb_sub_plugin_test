@@ -44,7 +44,11 @@ public class Main extends JavaPlugin implements Listener {
             String playername = cmdEvent.getCmds()[1];
             checkmoney(playername);
         }else if(cmdEvent.getCmd().equalsIgnoreCase("forcepay") && cmdEvent.getCmds().length==5){
-            // 用户执行了 /b forcepay <玩家名> <点券数> <消费原因> <是否公屏>
+            // 用户执行了 /b forcepay <玩家名> <点券数> <消费原因> <是否公屏> ，同步模式执行支付
+            /**
+             * 注意，正式环境下，接口应使用异步调用，这里的同步只是用来演示/b debug 功能用！
+             */
+            //
             // Pay(String playername,String point,String useto,boolean brocast)
             PayApi.Pay(
                     cmdEvent.getCmds()[1],
@@ -52,6 +56,21 @@ public class Main extends JavaPlugin implements Listener {
                     cmdEvent.getCmds()[3],
                     cmdEvent.getCmds()[4].equalsIgnoreCase("true")
             );
+        }else if(cmdEvent.getCmd().equalsIgnoreCase("forcepay_async") && cmdEvent.getCmds().length==5){
+            // 用户执行了 /b forcepay_async <玩家名> <点券数> <消费原因> <是否公屏> ，异步模式执行支付。
+            // Pay(String playername,String point,String useto,boolean brocast)
+            getServer().getScheduler().runTaskAsynchronously(this, new Runnable() {
+                @Override
+                public void run() {
+                    PayApi.Pay(
+                            cmdEvent.getCmds()[1],
+                            cmdEvent.getCmds()[2],
+                            cmdEvent.getCmds()[3],
+                            cmdEvent.getCmds()[4].equalsIgnoreCase("true")
+                    );
+                }
+            });
+
         }
     }
 
