@@ -1,0 +1,8 @@
+name: mcrmb_sub_plugin_test
+version: 1.0b1
+main: Main
+softdepend: [Mcrmb]
+commands:
+    test:
+      description: "test"
+      usage: "<command> <命令>"
